@@ -175,13 +175,25 @@ class EditableTextBlock extends StatelessWidget {
     final attrs = line.style.attributes;
 
     if (attrs[Attribute.list.key] == Attribute.ol) {
+      // Adjust width based on number of nodes in list.
+      // Using behavior of google docs as a reference for lists up to 99,999
+      // entries. For the exceptional list with more entries the string length
+      // of the index is used.
+      int width;
+      if (index < 100) {
+        width = 2;
+      } else if (index < 100000) {
+        width = 5;
+      } else {
+        width = index.toString().length;
+      }
       return QuillNumberPoint(
         index: index,
         indentLevelCounts: indentLevelCounts,
         count: count,
         style: defaultStyles.leading!.style,
         attrs: attrs,
-        width: fontSize * 2,
+        width: fontSize * width,
         padding: fontSize / 2,
       );
     }
