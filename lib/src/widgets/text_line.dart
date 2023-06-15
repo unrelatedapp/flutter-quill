@@ -1043,6 +1043,7 @@ class RenderEditableTextLine extends RenderEditableBox {
     final indentWidth = textDirection == TextDirection.ltr
         ? _resolvedPadding!.left
         : _resolvedPadding!.right;
+    debugPrint("performLayout() indentWidth: $indentWidth");
 
     _body!.layout(innerConstraints, parentUsesSize: true);
     (_body!.parentData as BoxParentData).offset =
@@ -1050,9 +1051,7 @@ class RenderEditableTextLine extends RenderEditableBox {
 
     if (_leading != null) {
       final leadingConstraints = innerConstraints.copyWith(
-          minWidth: indentWidth,
-          maxWidth: indentWidth,
-          maxHeight: _body!.size.height);
+          minWidth: indentWidth, maxWidth: 80, maxHeight: _body!.size.height);
       _leading!.layout(leadingConstraints, parentUsesSize: true);
       (_leading!.parentData as BoxParentData).offset =
           Offset(0, _resolvedPadding!.top);

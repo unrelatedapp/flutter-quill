@@ -29,6 +29,7 @@ class QuillNumberPoint extends StatelessWidget {
   Widget build(BuildContext context) {
     var s = index.toString();
     int? level = 0;
+    debugPrint('QuillNumberPoint() width: $width');
     if (!attrs.containsKey(Attribute.indent.key) && indentLevelCounts.isEmpty) {
       indentLevelCounts.clear();
       indentLevelCounts[0] = 1;

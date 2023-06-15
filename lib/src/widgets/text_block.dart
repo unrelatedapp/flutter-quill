@@ -187,6 +187,8 @@ class EditableTextBlock extends StatelessWidget {
       } else {
         width = index.toString().length;
       }
+      debugPrint(
+          '_buildLeading(): index: $index, widthScale: $width, fontSize: $fontSize');
       return QuillNumberPoint(
         index: index,
         indentLevelCounts: indentLevelCounts,
